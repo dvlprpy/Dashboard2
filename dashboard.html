@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dashboard.css">
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <script src="./bootstrap.bundle.min.js"></script>
+    <script src="./jalali-moment.browser.js"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+    
+    <div class="container-fluid">
+        <div class="row header-bar d-flex flex-row align-items-center">
+            <div class="col-3" onclick="fullWidthMenuBar()">
+                <p class="h1">
+                    Voxify
+                </p>
+            </div>
+            <div class="col-6 text-center">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-white outline-less shadow p-3 mb-2 bg-body-tertiary rounded" data-bs-toggle="dropdown">
+                        <img src="./svg/calendar-date.svg" width="30px" height="30px" alt="">
+                    </button>
+                    <span class="shadow p-3 mb-2 bg-body-tertiary rounded text-dark dropdown-menu">
+                        <li class="dropdown-item">
+                            <span class="jalali-date miladi-date "></span>
+                                <img src="" class="sun-moon-mode" width="20px" height="20px" alt="">
+                        </li>                        
+                    </span>
+                </div>
+                
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-white outline-less shadow p-3 mb-2 bg-body-tertiary rounded" data-bs-toggle="dropdown">
+                        <img src="./svg/avatar_profile.svg" width="50px" height="50px" alt="">
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">Amir</li>
+                        <li class="dropdown-item">
+                            <a href="#" class="btn btn-outline-danger">Log out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="col"></div> -->
+        </div>
+        <div class="row">
+            <div class="menu-bar w-25" id="menuBar">
+                <ul class="list-group list-group-flush list-group-item-action">
+                    <!-- home -->
+                    <li class="list-group-item cursor-pointer d-flex flex-row justify-content-start align-items-center shadow p-3 mb-2 bg-body-tertiary rounded btn btn-outline-primary text-dark" onclick="showContent('home');">
+                        <img src="./svg/home.svg" width="35px" height="35px" alt="">
+                        <span class="text-capitalize fw-semibold ps-2">Home</span>
+                    </li>
+                    <!-- ticket -->
+                    <li class="list-group-item  cursor-pointer d-flex flex-row justify-content-start align-items-center shadow p-3 mb-2 bg-body-tertiary rounded btn btn-outline-primary text-dark" onclick="showContent('ticket');">
+                        <img src="./svg/chat_live.svg" width="35px" height="35px" alt="">
+                        <span class="text-capitalize fw-semibold ps-2">ticket</span>
+                    </li>
+                    <!-- profile -->
+                    <li class="list-group-item cursor-pointer d-flex flex-row justify-content-start align-items-center shadow p-3 mb-2 bg-body-tertiary rounded btn btn-outline-primary text-dark" onclick="showContent('profile');">
+                        <img src="./svg/user_profile.svg" width="35px" height="35px" alt="">
+                        <span class="text-capitalize fw-semibold ps-2">profile</span>
+                    </li>
+                    <!-- saved speech -->
+                    <li class="list-group-item cursor-pointer d-flex flex-row justify-content-start align-items-center shadow p-3 mb-2 bg-body-tertiary rounded btn btn-outline-primary text-dark" onclick="showContent('save-speech');">
+                        <img src="./svg/saved.svg" width="35px" height="35px" alt="">
+                        <span class="text-capitalize fw-semibold ps-2">saved speech</span>
+                    </li>
+                    <!-- buy -->
+                    <li class="list-group-item cursor-pointer d-flex flex-row justify-content-start align-items-center shadow p-3 mb-2 bg-body-tertiary rounded btn btn-outline-primary text-dark" onclick="showContent('plan');">
+                        <img src="./svg/pay.svg" width="35px" height="35px" alt="">
+                        <span class="text-capitalize fw-semibold ps-2">buy</span>
+                    </li>
+                    <!-- wallet -->
+                    <li class="list-group-item cursor-pointer d-flex flex-row justify-content-start align-items-center shadow p-3 mb-2 bg-body-tertiary rounded btn btn-outline-primary text-dark" onclick="showContent('balance');">
+                        <img src="./svg/wallet.svg" width="35px" height="35px" alt="">
+                        <span class="text-capitalize fw-semibold ps-2">wallet</span>
+                    </li>
+                    <!-- survey rating feedback -->
+                    <li class="list-group-item cursor-pointer d-flex flex-row justify-content-start align-items-center shadow p-3 mb-2 bg-body-tertiary rounded btn btn-outline-primary text-dark" onclick="showContent('rating');">
+                        <img src="./svg/survey_rating_feedback.svg" width="35px" height="35px" alt="">
+                        <span class="text-capitalize fw-semibold ps-2">Survey Rating</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content-bar w-75 overflow-y-scroll" id="contentBar">
+                <!-- ticket menu bar content -->
+                <div class="row home text-center d-flex flex-wrap align-items-center active" id="home">
+                    <div class="col-12 mt-3 mb-5">
+                        <span class="text-capitalize fs-3 font-family-serif">wellcome</span>
+                    </div>
+
+                    <!-- ticket section -->
+                    <!-- <div class="col last-ticket mt-3">
+                        <div class="ticket-container shadow p-3 mb-2  rounded border border-primary border-opacity-75 border-1">
+                                <div class="ticket-header w-100 ticket-header-flex bg-gradient bg-white mb-3">
+                                    <div class="">
+                                        <img src="./svg/avatar_support_site.svg" width="40px" height="40px" alt="">
+                                        <span class="text-capitalize">support</span>
+                                    </div>
+                                    <small class="text-capitalize text-body-secondary fs-6">last seen resently</small>
+                                </div>
+                                <div class="ticket-body bg-light mt-2">
+                                        <div class="bg-primary bg-gradient ms-2 text-white mb-4 pt-2 pb-2 ps-2 rounded text-start w-75 float-end">
+                                            How can I recharge my wallet?
+                                            <span class="text-body-secondary d-block text-end pe-2 message-time">
+                                               2024/04/05,11:02 am
+                                            </span>
+                                        </div>
+                                        <div class="bg-white rounded ms-2 mb-3 text-start text-justify w-75 p-4 float-start">
+                                            You can recharge your wallet from the wallet section of your user panel using the popular digital currency system of Litecoin or Bitcoin or with your credit card.
+                                            <span class="text-body-secondary d-block text-end  message-time">
+                                                2024/04/05,13:43 pm
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="ticket-footer">
+                                    <div class="input-group">
+                                        <input type="text" name="" id="" class="form-control">
+                                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-telegram text-primary fs-3"></i></span>
+                                    </div>
+                                </div>
+                        </div>
+                    </div> -->
+
+                </div>
+
+                <!-- ticket section -->
+                <div class="row ticket mt-3 ms-4 me-4 d-none" id="ticket">
+                    <h1 class="text-capitalize mt-2 mb-5 text-center">Ticket</h1>
+                    <div class="ticket-container shadow p-3 mb-2  rounded border border-primary border-opacity-75 border-1">
+                        <!-- <div class="ticket-content"> -->
+                            <div class="ticket-header w-100 ticket-header-flex bg-gradient bg-white mb-3">
+                                <div class="">
+                                    <img src="./svg/avatar_support_site.svg" width="40px" height="40px" alt="">
+                                    <span class="text-capitalize">support</span>
+                                </div>
+                                <small class="text-capitalize text-body-secondary fs-6">last seen resently</small>
+                            </div>
+                            <div class="ticket-body bg-light mt-2">
+                                <!-- <div class="message clearfix"> -->
+                                    <div class="bg-primary bg-gradient ms-2 text-white mb-4 pt-2 pb-2 ps-2 rounded text-start w-75 float-end">
+                                        How can I recharge my wallet?
+                                        <span class="text-body-secondary d-block text-end pe-2 message-time">
+                                           2024/04/05,11:02 am
+                                        </span>
+                                    </div>
+                                    <div class="bg-white rounded ms-2 mb-3 text-start text-justify w-75 p-4 float-start">
+                                        You can recharge your wallet from the wallet section of your user panel using the popular digital currency system of Litecoin or Bitcoin or with your credit card.
+                                        <span class="text-body-secondary d-block text-end  message-time">
+                                            2024/04/05,13:43 pm
+                                        </span>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <div class="ticket-footer">
+                                <div class="input-group">
+                                    <input type="text" name="" id="" class="form-control">
+                                    <span class="input-group-text" id="basic-addon2"><i class="bi bi-telegram text-primary fs-3"></i></span>
+                                </div>
+                            </div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+
+                <!-- profile  section-->
+                <div class="row profile mt-3 d-none" id="profile">
+                    <h1 class="text-capitalize text-center fw-semibold mt-3 mb-5">User Profile Information</h1>
+                    <div class="container shadow p-3 mb-2 bg-body-tertiary rounded w-75">
+                        <form action="" method="" >
+                            
+                            <!-- firstname -->
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon3">
+                                    <img src="./svg/add_user.svg" width="30px" height="30px" alt="">
+                                </span>
+                                <input type="text" name="" id="" class="form-control" placeholder="Your First Name...">
+                            </div>
+                            <!-- lastname -->
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon4">
+                                    <img src="./svg/add_user.svg" width="30px" height="30px" alt="">
+                                </span>
+                                <input type="text" name="" id="" class="form-control" placeholder="Your Last Name...">
+                            </div>
+                            <!-- age -->
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon5">Age:</span>
+                                <input type="number" name="" id="" class="form-control" placeholder="Your Age...">
+                            </div>
+                            <!-- phone number -->
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon6">
+                                    <img src="./svg/phone.svg" alt="" height="30px" width="30px">
+                                </span>
+                                <input type="text" name="" id="" class="form-control" placeholder="Your Phone Number...">
+                            </div>
+                            <!-- Email -->
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon7">
+                                    <img src="./svg/email.svg" alt="" height="30px" width="30px">
+                                </span>
+                                <input type="email" name="" id="" class="form-control" placeholder="Your Email Address...">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- saved speech section -->
+                <div class="row save-speech d-none" id="save-speech">
+                    <h1 class="text-center text-capitalize fw-semibold mt-3 mb-5">Saved Speech</h1>
+                    <div class="container d-flex flex-row flex-wrap justify-content-center align-content-between">
+                        <!-- notepad: speech to text 1-->
+                        <div class="card w-50 me-1 shadow p-3 mb-2 bg-body-tertiary rounded">
+                            <div class="logo d-flex flex-row justify-content-between">
+                                <img src="./svg/notepad.svg" class="cursor-pointer" width="40px" height="40px" alt="">
+                                <img src="./svg/garbage_trash.svg" width="40px" class="cursor-pointer" height="40px" alt="">
+                            </div>
+                            <div class="card-body">
+                              <!-- <h5 class="card-title">voxify.com</h5> -->
+                              <p class="card-text">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quisquam maxime maiores, mollitia nulla reprehenderit numquam laborum exercitationem vitae, cupiditate voluptatum labore similique enim voluptatem sit ullam. Quas, saepe ducimus?
+                              </p>
+                              <a href="#" class="btn btn-primary">copy text</a>
+                            </div>
+                        </div>
+
+                        <!-- notepad: 2 -->
+                        <div class="card w-50 me-1 shadow p-3 mb-2 bg-body-tertiary rounded">
+                            <div class="logo d-flex flex-row justify-content-between">
+                                <img src="./svg/notepad.svg" class="cursor-pointer" width="40px" height="40px" alt="">
+                                <img src="./svg/garbage_trash.svg" width="40px" class="cursor-pointer" height="40px" alt="">
+                            </div>
+                            <div class="card-body">
+                              <!-- <h5 class="card-title">voxify.com</h5> -->
+                              <p class="card-text">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quisquam maxime maiores, mollitia nulla reprehenderit numquam laborum exercitationem vitae, cupiditate voluptatum labore similique enim voluptatem sit ullam. Quas, saepe ducimus?
+                              </p>
+                              <a href="#" class="btn btn-primary">copy text</a>
+                            </div>
+                        </div>
+
+                        <!-- notepad: 3 -->
+                        <div class="card w-50 me-1 shadow p-3 mb-2 bg-body-tertiary rounded">
+                            <div class="logo d-flex flex-row justify-content-between">
+                                <img src="./svg/notepad.svg" class="cursor-pointer" width="40px" height="40px" alt="">
+                                <img src="./svg/garbage_trash.svg" width="40px" class="cursor-pointer" height="40px" alt="">
+                            </div>
+                            <div class="card-body">
+                              <!-- <h5 class="card-title">voxify.com</h5> -->
+                              <p class="card-text">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quisquam maxime maiores, mollitia nulla reprehenderit numquam laborum exercitationem vitae, cupiditate voluptatum labore similique enim voluptatem sit ullam. Quas, saepe ducimus?
+                              </p>
+                              <a href="#" class="btn btn-primary">copy text</a>
+                            </div>
+                        </div>
+
+                        <!-- notepad: 4 -->
+                        <div class="card w-50 me-1 shadow p-3 mb-2 bg-body-tertiary rounded">
+                            <div class="logo d-flex flex-row justify-content-between">
+                                <img src="./svg/notepad.svg" class="cursor-pointer" width="40px" height="40px" alt="">
+                                <img src="./svg/garbage_trash.svg" width="40px" class="cursor-pointer" height="40px" alt="">
+                            </div>
+                            <div class="card-body">
+                              <!-- <h5 class="card-title">voxify.com</h5> -->
+                              <p class="card-text">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quisquam maxime maiores, mollitia nulla reprehenderit numquam laborum exercitationem vitae, cupiditate voluptatum labore similique enim voluptatem sit ullam. Quas, saepe ducimus?
+                              </p>
+                              <a href="#" class="btn btn-primary">copy text</a>
+                            </div>
+                        </div>
+
+                        <!-- notepad: 5 -->
+                        <div class="card w-50 me-1 shadow p-3 mb-2 bg-body-tertiary rounded">
+                            <div class="logo d-flex flex-row justify-content-between">
+                                <img src="./svg/notepad.svg" class="cursor-pointer" width="40px" height="40px" alt="">
+                                <img src="./svg/garbage_trash.svg" width="40px" class="cursor-pointer" height="40px" alt="">
+                            </div>
+                            <div class="card-body">
+                              <!-- <h5 class="card-title">voxify.com</h5> -->
+                              <p class="card-text">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quisquam maxime maiores, mollitia nulla reprehenderit numquam laborum exercitationem vitae, cupiditate voluptatum labore similique enim voluptatem sit ullam. Quas, saepe ducimus?
+                              </p>
+                              <a href="#" class="btn btn-primary">copy text</a>
+                            </div>
+                        </div>
+
+                        <!-- notepad: 6 -->
+                        <div class="card w-50 me-1 shadow p-3 mb-2 bg-body-tertiary rounded">
+                            <div class="logo d-flex flex-row justify-content-between">
+                                <img src="./svg/notepad.svg" class="cursor-pointer" width="40px" height="40px" alt="">
+                                <img src="./svg/garbage_trash.svg" width="40px" class="cursor-pointer" height="40px" alt="">
+                            </div>
+                            <div class="card-body">
+                              <!-- <h5 class="card-title">voxify.com</h5> -->
+                              <p class="card-text">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quisquam maxime maiores, mollitia nulla reprehenderit numquam laborum exercitationem vitae, cupiditate voluptatum labore similique enim voluptatem sit ullam. Quas, saepe ducimus?
+                              </p>
+                              <a href="#" class="btn btn-primary">copy text</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- buy plan  (package plan) -->
+                <div class="row plan d-none" id="plan">
+                    <h1 class="text-center text-capitalize mt-5 mb-5">Your Plans 
+                        <img src="./svg/packages-buy.svg" class="d-inline" width="60px" height="60px" alt="">
+                    </h1>
+                    <div class="d-flex flex-row justify-content-around align-items-start flex-wrap">
+                        <!-- free plan -->
+                        <div class="card shadow p-3 mb-2 rounded w-25 p-2 d-flex flex-column justify-content-center align-items-center flex-wrap">
+                            <img src="./svg/cube.svg" width="25px" height="25px" alt="">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <p class="text-transform text-center fs-6 fw-light text-body-secondary">Basic</p>
+                                </div>
+                                <div class="card-text">
+                                    <p class="text-uppercase fw-bolder fs-1 text-center">free</p>
+                                </div>
+                                <ul class="list-group list-group-flush text-center">
+                                    <li class="list-group-item">5 speech to text</li>
+                                    <li class="list-group-item">Free support</li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <a href="" class="btn btn-outline-danger text-capitalize">free</a>
+                            </div>
+                        </div>
+    
+
+                        <!-- pro plan -->
+                        <div class="card shadow p-3 mb-2 rounded w-25 p-2 d-flex flex-column justify-content-around align-items-center flex-wrap">
+                            <img src="./svg/cup.svg" width="25px" height="25px" alt="">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <p class="text-transform text-center fs-6 fw-light text-body-secondary">pro</p>
+                                </div>
+                                <div class="card-text">
+                                    <p class="text-uppercase fw-bolder fs-1 text-center">$70</p>
+                                </div>
+                                <ul class="list-group list-group-flush text-center">
+                                    <li class="list-group-item">500 speech to text</li>
+                                    <li class="list-group-item">Free support</li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <a href="" class="btn btn-outline-warning text-capitalize">purchase</a>
+                            </div>
+                        </div>
+    
+                        <!-- Enterprise plan -->
+                        <div class="card shadow p-3 mb-2 rounded w-25 p-2 d-flex flex-column justify-content-center align-items-center flex-wrap">
+                            <img src="./svg/credit card.svg" width="25px" height="25px" alt="">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <p class="text-transform text-center fs-6 fw-light text-body-secondary">Enterprise</p>
+                                </div>
+                                <div class="card-text">
+                                    <p class="text-uppercase fw-bolder fs-1 text-center">$100</p>
+                                </div>
+                                <ul class="list-group list-group-flush text-center">
+                                    <li class="list-group-item">1000 speech to text</li>
+                                    <li class="list-group-item">Free support</li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <a href="" class="btn btn-outline-primary text-capitalize">purchase</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- wallet or balance -->
+                <div class="row balance d-none" id="balance">
+                    <h1 class="text-capitalize text-center mt-3 mb-5">Your Wallet</h1>
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <div class="border border-primary border-3 w-50 rounded p-3 mb-4 shadow p-3 mb-2 bg-body-tertiary rounded">
+                            <p class="text-capitalize text-center">Total balance</p>
+                            <p class="text-capitalize text-center fs-1 h1 fw-bolder">$100</p>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <button type="submit" class="btn btn-outline-primary text-capitalize mb-2">
+                                Deposit cash
+                                <img src="./svg/deposit.svg" width="30px" height="30px" alt="">
+                            </button>
+                            <button type="submit" class="btn btn-outline-danger text-capitalize">
+                                Withdraw cash
+                                <img src="./svg/withdraw.svg" width="30px" height="30px" alt="">
+                            </button>
+                        </div>
+                        <!-- <div class=""> -->
+                            <table class="table table-hover table-striped table-responsive mt-5">
+                                <caption class="caption-top text-center">Table of deposits and withdrawals</caption>
+                                <tr>
+                                    <th class="text-capitalize">card number</th>
+                                    <th class="text-capitalize">withdraw / deposit</th>
+                                    <th class="text-capitalize">date</th>
+                                    <th class="text-capitalize">mony</th>
+                                </tr>
+                                <tr>
+                                    <td class="text-capitalize">1234567890</td>
+                                    <td class="text-capitalize">deposit</td>
+                                    <td class="text-capitalize">2023/09/14 12:20</td>
+                                    <td class="text-capitalize">$100</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-capitalize">1234567890</td>
+                                    <td class="text-capitalize">withdraw</td>
+                                    <td class="text-capitalize">2023/09/3 12:20</td>
+                                    <td class="text-capitalize">$30</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-capitalize">1234567890</td>
+                                    <td class="text-capitalize">deposit</td>
+                                    <td class="text-capitalize">2023/09/12 12:20</td>
+                                    <td class="text-capitalize">$20</td>
+                                </tr>
+                            </table>
+                        <!-- </div> -->
+                    </div>
+                </div>
+
+                <!-- survey rating -->
+                <div class="row rating d-none" id="rating">
+                    <h1 class="mt-4 text-capitalize text-center fw-bolder mb-5">Survey
+                        <img src="./svg/business-person-male-taking-notes.svg" width="50px" height="50px" alt="">
+                    </h1>
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <table class="table table-responsive table-hover table-striped">
+                            <tr>
+                                <th class="text-capitalize">Website</th>
+                                <th class="text-capitalize">rating</th>
+                                <th class="text-capitalize">description</th>
+                            </tr>
+                            <!-- speech to text website section (survey) -->
+                            <tr>
+                                <td class="text-capitalize">speech to text website section</td>
+                                <td>
+                                    <div class="form-check">
+                                        <input type="radio" name="flexRadioDefault1" class="form-check-input" id="rating1">
+                                        <label for="rating1">
+                                            <img src="./svg/thumbs-up.svg" width="30px" height="30px" alt="">
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" name="flexRadioDefault1" class="form-check-input" id="rating2">
+                                        <label for="rating2">
+                                            <img src="./svg/thumbs-down.svg" width="30px" height="30px" alt="">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon8">
+                                            <img src="./svg/writing-hand.svg" width="25px" height="25px" alt="">
+                                        </span>
+                                        <textarea name="" id="" cols="25" rows="2" placeholder=" write us your opinion..."></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- dashboard section survey -->
+                            <tr>
+                                <td class="text-capitalize">dashboard section</td>
+                                <td>
+                                    <div class="form-check">
+                                        <input type="radio" name="flexRadioDefault2" class="form-check-input" id="rating1">
+                                        <label for="rating1">
+                                            <img src="./svg/thumbs-up.svg" width="30px" height="30px" alt="">
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" name="flexRadioDefault2" class="form-check-input" id="rating2">
+                                        <label for="rating2">
+                                            <img src="./svg/thumbs-down.svg" width="30px" height="30px" alt="">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon8">
+                                            <img src="./svg/writing-hand.svg" width="25px" height="25px" alt="">
+                                        </span>
+                                        <textarea name="" id="" cols="25" rows="2" placeholder=" write us your opinion..."></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- contact us and support section survy -->
+                            <tr>
+                                <td class="text-capitalize">contact us & support section</td>
+                                <td>
+                                    <div class="form-check">
+                                        <input type="radio" name="flexRadioDefault3" class="form-check-input" id="rating1">
+                                        <label for="rating1">
+                                            <img src="./svg/thumbs-up.svg" width="30px" height="30px" alt="">
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" name="flexRadioDefault3" class="form-check-input" id="rating2">
+                                        <label for="rating2">
+                                            <img src="./svg/thumbs-down.svg" width="30px" height="30px" alt="">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon8">
+                                            <img src="./svg/writing-hand.svg" width="25px" height="25px" alt="">
+                                        </span>
+                                        <textarea name="" id="" cols="25" rows="2" placeholder=" write us your opinion..."></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="./dashboard.js"></script>
+</body>
+</html>

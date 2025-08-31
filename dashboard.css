@@ -1,0 +1,51 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.flex-collection-style{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ticket-header-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-bar{
+    overflow-y: scroll;
+}
+
+.outline-less{
+    outline-style: 0;
+}
+
+.font-family-serif{
+    font-family: serif;
+}
+
+.ticket-container{
+    width: 50vw;
+}
+
+.content-bar {
+    overflow-y: auto;
+    max-height: 100vh;
+}
+.container-fluid {
+    overflow: hidden;
+}
+
+.content-bar {
+    max-height: 85vh; 
+    overflow-y: auto; 
+}
+.w-0{
+    width: 0 !important;
+}
