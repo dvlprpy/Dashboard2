@@ -41,6 +41,6 @@ voxify-dashboard/
 1. Clone the repository:
    
 ```bash
-   git clone https://github.com/dvlprpy/Dashboard2.git
+   git clone https://github.com/dvlprpy/voxify-dashboard.git
    cd voxify-dashboard
 ```
